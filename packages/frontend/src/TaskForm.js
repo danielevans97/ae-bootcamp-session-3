@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Paper, Typography, Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { TextField, Button, Paper, Typography, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
 
 const PRIORITY_OPTIONS = ['P1', 'P2', 'P3'];
-const PRIORITY_COLORS = { P1: '#e53935', P2: '#f57c00', P3: '#757575' };
 
 function TaskForm({ onSave, initialTask }) {
   const [title, setTitle] = useState(initialTask?.title || '');
@@ -150,31 +149,22 @@ function TaskForm({ onSave, initialTask }) {
             }
           }}
         />
-        <FormControl variant="outlined" fullWidth size="small">
-          <InputLabel id="priority-label">Priority</InputLabel>
-          <Select
-            labelId="priority-label"
-            id="task-priority"
-            value={priority}
-            label="Priority"
-            onChange={e => setPriority(e.target.value)}
-            inputProps={{ 'data-testid': 'priority-select' }}
-            sx={{
-              borderRadius: 2,
-              '& .MuiOutlinedInput-notchedOutline': { borderColor: PRIORITY_COLORS[priority] },
-              '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: PRIORITY_COLORS[priority] },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: PRIORITY_COLORS[priority] },
-              color: PRIORITY_COLORS[priority],
-              fontWeight: 700,
-            }}
-          >
+        <Box>
+          <Typography variant="caption" sx={{ color: '#555', fontWeight: 600, mb: 0.5, display: 'block' }}>Priority</Typography>
+          <Box display="flex" gap={1} data-testid="priority-select">
             {PRIORITY_OPTIONS.map(p => (
-              <MenuItem key={p} value={p} sx={{ color: PRIORITY_COLORS[p], fontWeight: 700 }}>
+              <button
+                key={p}
+                type="button"
+                className={priority === p ? 'priority-option-selected' : 'priority-option-unselected'}
+                onClick={() => setPriority(p)}
+                data-testid={`priority-option-${p}`}
+              >
                 {p}
-              </MenuItem>
+              </button>
             ))}
-          </Select>
-        </FormControl>
+          </Box>
+        </Box>
         {error && <Typography color="error" sx={{ fontWeight: 500, fontSize: '0.875rem' }}>{error}</Typography>}
         <Box display="flex" gap={2}>
           <Button 
