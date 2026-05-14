@@ -6,6 +6,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import EventIcon from '@mui/icons-material/Event';
 
+const PRIORITY_COLORS = { P1: '#e53935', P2: '#f57c00', P3: '#757575' };
+
 function TaskList({ onEdit }) {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -220,6 +222,18 @@ function TaskList({ onEdit }) {
                   }}
                 />
               )}
+              <Chip
+                label={task.priority || 'P3'}
+                size="small"
+                sx={{
+                  height: 20,
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  backgroundColor: PRIORITY_COLORS[task.priority] || PRIORITY_COLORS['P3'],
+                  color: 'white',
+                  letterSpacing: '0.5px',
+                }}
+              />
               <Box 
                 sx={{ 
                   display: 'flex', 

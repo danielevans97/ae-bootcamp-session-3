@@ -92,3 +92,26 @@ li:last-child {
   color: #d32f2f;
   font-weight: bold;
 }
+
+/* Priority badge colors */
+.priority-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.priority-P1 {
+  background-color: #e53935;
+}
+
+.priority-P2 {
+  background-color: #f57c00;
+}
+
+.priority-P3 {
+  background-color: #757575;
+}
